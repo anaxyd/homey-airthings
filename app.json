@@ -1,0 +1,26 @@
+{
+  "id": "com.airthings.waveplus",
+  "version": "1.0.0",
+  "compatibility": ">=1.5.0",
+  "sdk": 2,
+  "name": {
+    "en": "Airthings Wave Plus"
+  },
+  "description": {
+    "en": "BLE device which fetch VOC, radon, temperature and humidity."
+  },
+  "category": [
+    "tools"
+  ],
+  "permissions": [
+    "homey:wireless:ble"
+  ],
+  "images": {
+    "large": "/assets/images/large.png",
+    "small": "/assets/images/small.png"
+  },
+  "author": {
+    "name": "Vegard B",
+    "email": "anaxyd@gmail.com"
+  }
+}
