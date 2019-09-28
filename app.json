@@ -23,6 +23,38 @@
     "name": "Vegard B",
     "email": "anaxyd@gmail.com"
   },
+  "capabilities": {
+    "measure_radon": {
+      "type": "number",
+      "title": {
+        "en": "Radon"
+      },
+      "uiComponent": "sensor",
+      "getable": true,
+      "setable": false,
+      "units": {
+        "en": "bq"
+      },
+      "min": 0,
+      "max": 2000,
+      "step": 1
+    },
+    "measure_voc": {
+      "type": "number",
+      "title": {
+        "en": "VOC"
+      },
+      "uiComponent": "sensor",
+      "getable": true,
+      "setable": false,
+      "units": {
+        "en": "ppb"
+      },
+      "min": 0,
+      "max": 2000,
+      "step": 1
+    }
+  },
   "drivers": [
     {
       "id": "airthings-wave-plus",
@@ -31,12 +63,25 @@
       },
       "class": "sensor",
       "capabilities": [
-        "measure_co2",
+        "measure_radon",
+        "measure_voc",
         "measure_humidity",
-        "measure_luminance",
-        "measure_pm25",
         "measure_pressure",
-        "measure_temperature"
+        "measure_temperature",
+        "measure_co2"
+      ],
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_my_devices"
+          }
+        },
+        {
+          "id": "add_my_devices",
+          "template": "add_devices"
+        }
       ],
       "images": {
         "large": "/drivers/airthings-wave-plus/assets/images/large.png",
