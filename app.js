@@ -1,8 +1,7 @@
 'use strict';
 
 const Homey = require('homey');
-const bufferpack = require('/bufferpack.js');
-//const { ManagerBLE } = require('homey');
+const bufferpack = require('/lib/bufferpack.js');
 
 class MyApp extends Homey.App {
 	
