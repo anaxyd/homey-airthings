@@ -22,5 +22,26 @@
   "author": {
     "name": "Vegard B",
     "email": "anaxyd@gmail.com"
-  }
+  },
+  "drivers": [
+    {
+      "id": "airthings-wave-plus",
+      "name": {
+        "en": "Airthings Wave Plus"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "measure_co2",
+        "measure_humidity",
+        "measure_luminance",
+        "measure_pm25",
+        "measure_pressure",
+        "measure_temperature"
+      ],
+      "images": {
+        "large": "/drivers/airthings-wave-plus/assets/images/large.png",
+        "small": "/drivers/airthings-wave-plus/assets/images/small.png"
+      }
+    }
+  ]
 }
