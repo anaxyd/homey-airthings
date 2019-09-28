@@ -3,119 +3,61 @@
 const Homey = require('homey');
 const bufferpack = require('/lib/bufferpack.js');
 
+/*
+	Notes etc
+
+
+	Node.js modules readme:
+	https://apps.developer.athom.com/tutorial-App%20Store.html
+
+	modules in use so far:
+	- https://github.com/ryanrolds/bufferpack
+
+
+
+*/
+
 class MyApp extends Homey.App {
 	
 	async onInit() {
 		this.log('MyApp is running...!');
 
 		let timeout = 30000;
-
-		let self = this;
-
-		//self.log(Homey.app)
+		const UUID = "b42e1c08ade711e489d3123b93f75cba";
 
 		const ble = Homey.ManagerBLE;
 		const list = await ble.discover(['b42e1c08ade711e489d3123b93f75cba'], timeout)
 		const peripheral = await list[0].connect();
-		//console.log(peripheral);
-		//const services = await peripheral.discoverServices();
-		//console.log(services)
-
-		//return;
-		const sac = await peripheral.discoverAllServicesAndCharacteristics();
-		//console.log(sac);
-
-		// sac.forEach(element => {
-		// 	self.log(element.characteristics)
-		// });
-
 		const services = await peripheral.discoverServices();
-
-		//console.log(services)
-		//return;
-		// const dataService = await services.find(service => {
-		// 	console.log(service.uuid)
-		// });
 		const dataService = await services.find(service => service.uuid === "b42e1c08ade711e489d3123b93f75cba");
-
-		//console.log(dataService)
-		//return;
 		const characteristics = await dataService.discoverCharacteristics();
-
-		//console.log(characteristics.length)
-
-		//return
-		const data = await characteristics.find(characteristic => {
-			console.log(characteristic.uuid)
-			return characteristic.uuid === "b42e2a68ade711e489d3123b93f75cba"
-		});
-
+		const data = await characteristics.find(characteristic => characteristic.uuid === "b42e2a68ade711e489d3123b93f75cba");
 		const sensorData = await data.read();
 
-		console.log(sensorData)
+		// This is the matching format for the binary data for unpacking.
+		const format = "<xbxbHHHHHHxxxx";
+		const unpacked = bufferpack.unpack(format, sensorData);
 
-		const faen = bufferpack.unpack("BBBBHHHHHHHH", sensorData);
-		const faen2 = bufferpack.unpack("<xbxbHHHHHHxxxx", sensorData);
-		console.log(faen)
-		console.log(faen2)
-		console.log("!!!")
+		// Sensordata unpacked looks like this:
+		// (humidity, light, sh_rad, lo_rad, temp, pressure, co2, voc)
+		// Example:
+		// [ 81, 0, 10, 0, 2387, 48689, 366, 116 ]
+		// Some of the values requires minor math to get correct values
 
-		//console.log(sensorData.readUInt16LE(4)) // radon?
-		console.log(sensorData.readUInt16LE(0))
-		console.log(sensorData.readUInt16LE(1))
-		console.log(sensorData.readUInt16LE(2))
-		console.log(sensorData.readUInt16LE(3))
-		console.log(sensorData.readUInt16LE(4))
-		console.log(sensorData.readUInt16LE(5))
-		console.log(sensorData.readUInt16LE(6))
-		console.log(sensorData.readUInt16LE(7))
-		console.log(sensorData.readUInt16LE(8))
-		console.log("FAEN")
-		console.log(sensorData.readUInt32LE(0))
-		console.log(sensorData.readUInt32LE(1))
-		console.log(sensorData.readUInt32LE(2))
-		console.log(sensorData.readUInt32LE(3))
-		console.log(sensorData.readUInt32LE(4))
-		console.log(sensorData.readUInt32LE(5))
-		console.log(sensorData.readUInt32LE(6))
-		console.log(sensorData.readUInt32LE(7))
-		console.log(sensorData.readUInt32LE(8))
+		let sensorValues = {
+			humidity: unpacked[0] / 2,
+			light: unpacked[1],
+			shortTermRadon: unpacked[2],
+			longTermRadon: unpacked[3],
+			temperature: unpacked[4] / 100,
+			pressure: unpacked[5] / 50,
+			co2: unpacked[6],
+			voc: unpacked[7]
+		}
 
-		return;
-
-		// const data = await characteristics.find(characteristic => characteristic.uuid === DATA_CHARACTERISTIC_UUID);
-		// if(!data) {
-		// 	throw new Error('Missing data characteristic');
-		// }
-		// console.log('DATA_CHARACTERISTIC_UUID::read');
-		// const sensorData = await data.read();
-
-
-		//let faen = new Homey.BlePeripheral();
+		console.log(sensorValues)
 
 		
-
-		/* new Homey.BleAdvertisement({
-			address: "c4:64:e3:f0:5b:5d"
-		}).connect().then(function (d) {
-			self.log(d)
-		}) */
-
-		/* new Homey.BleService().discoverCharacteristics(["b42e2a68-ade7-11e4-89d3-123b93f75cba"]).then((d) => {
-			self.log(d)
-		}) */
-
-		return;
-
-		/* Homey.ManagerBLE.find("b42e2a68-ade7-11e4-89d3-123b93f75cba", timeout).then(function (advertisement) {
-			this.log(advertisement)
-            //return advertisement;
-		}); */
-		
-		Homey.ManagerBLE.discover([], timeout).then(function (advertisement) {
-			self.log(advertisement)
-            //return advertisement;
-        });
 	}
 	
 }
