@@ -83,6 +83,42 @@
           "template": "add_devices"
         }
       ],
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "General settings"
+          },
+          "children": [
+            {
+              "id": "pollInterval",
+              "type": "number",
+              "label": {
+                "en": "Poll interval in minutes (default is 30)"
+              },
+              "value": 30,
+              "min": 1,
+              "max": 999,
+              "hint": {
+                "en": "Define how often Homey should poll your Airthings Wave Plus. More often will reduce battery life."
+              }
+            },
+            {
+              "id": "pollTimeout",
+              "type": "number",
+              "label": {
+                "en": "Poll timeout in seconds (default is 20)"
+              },
+              "value": 20,
+              "min": 10,
+              "max": 30,
+              "hint": {
+                "en": "Define how many seconds Homey should try to connect to your Airthings Wave Plus before timeout. Useful when your device is far away from Homey."
+              }
+            }
+          ]
+        }
+      ],
       "images": {
         "large": "/drivers/airthings-wave-plus/assets/images/large.png",
         "small": "/drivers/airthings-wave-plus/assets/images/small.png"
