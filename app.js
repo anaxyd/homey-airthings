@@ -77,8 +77,8 @@ class AirthingsApp extends Homey.App {
 	discoverDevices(driver) {
 		return new Promise(async(resolve, reject) => {
 
-			let timeout = 25000;
 			this.log("Searching for Airthings devices...")
+			const timeout = 29000;
 
 			const ble = Homey.ManagerBLE;
 
