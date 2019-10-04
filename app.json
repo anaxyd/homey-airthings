@@ -49,6 +49,7 @@
       "title": {
         "en": "Radon"
       },
+      "icon": "/assets/radon.svg",
       "insights": true,
       "uiComponent": "sensor",
       "getable": true,
@@ -65,6 +66,7 @@
       "title": {
         "en": "VOC"
       },
+      "icon": "/assets/voc.svg",
       "insights": true,
       "uiComponent": "sensor",
       "getable": true,
