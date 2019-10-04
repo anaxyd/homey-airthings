@@ -1,17 +1,30 @@
 {
-  "id": "com.airthings.waveplus",
+  "id": "com.airthings",
   "version": "1.0.0",
   "compatibility": ">=1.5.0",
   "sdk": 2,
+  "brandColor": "#e5ac00",
   "name": {
-    "en": "Airthings Wave Plus"
+    "en": "Airthings"
   },
   "description": {
-    "en": "BLE device which fetch VOC, radon, temperature and humidity."
+    "en": "BLE devices which measures radon, VOC, temperature and humidity."
   },
   "category": [
-    "tools"
+    "tools",
+    "climate"
   ],
+  "tags": {
+    "en": [ 
+      "radon",
+      "radon sensor",
+      "airthings",
+      "airthings wave plus",
+      "airthings wave",
+      "wave plus",
+      "wave"
+    ]
+  },
   "permissions": [
     "homey:wireless:ble"
   ],
@@ -20,8 +33,15 @@
     "small": "/assets/images/small.png"
   },
   "author": {
-    "name": "Vegard B",
+    "name": "CRUDE AS / Vegard Brenden",
     "email": "anaxyd@gmail.com"
+  },
+  "contributing": {
+    "donate": {
+      "paypal": {
+        "username": "anaxyd"
+      }
+    }
   },
   "capabilities": {
     "measure_radon": {
@@ -29,6 +49,7 @@
       "title": {
         "en": "Radon"
       },
+      "insights": true,
       "uiComponent": "sensor",
       "getable": true,
       "setable": false,
@@ -44,6 +65,7 @@
       "title": {
         "en": "VOC"
       },
+      "insights": true,
       "uiComponent": "sensor",
       "getable": true,
       "setable": false,
@@ -54,6 +76,9 @@
       "max": 2000,
       "step": 1
     }
+  },
+  "energy": {
+    "batteries": [ "AAA", "AAA" ]
   },
   "drivers": [
     {
