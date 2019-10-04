@@ -62,12 +62,13 @@ class MyApp extends Homey.App {
 		
 	}
 
-	getValues(macAddress) {
+	getValues(macAddress, pollTimeout) {
 		return new Promise(async(resolve, reject) => {
 
 			console.log(macAddress)
+			console.log(pollTimeout)
 
-			let timeout = 20000;
+			let timeout = pollTimeout;
 
 			const ble = Homey.ManagerBLE;
 
