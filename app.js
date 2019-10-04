@@ -79,6 +79,7 @@ class MyApp extends Homey.App {
 				const characteristics = await dataService.discoverCharacteristics();
 				const data = await characteristics.find(characteristic => characteristic.uuid === "b42e2a68ade711e489d3123b93f75cba");
 				const sensorData = await data.read();
+				await peripheral.disconnect();
 
 				// This is the matching format for the binary data for unpacking.
 				const format = "<xbxbHHHHHHxxxx";
