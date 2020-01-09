@@ -2,10 +2,10 @@
 
 const Homey = require('homey');
 
-class WavePlusDevice extends Homey.Device {
+class WaveDevice extends Homey.Device {
 	
 	onInit() {
-		this.log('WavePlusDevice has been inited');
+		this.log('WaveDevice has been inited');
 
 		const settings = this.getSettings();
 		const pollInterval = settings.pollInterval;
@@ -27,18 +27,15 @@ class WavePlusDevice extends Homey.Device {
 		const settings = this.getSettings();
 		const pollTimeout = settings.pollTimeout;
 
-		Homey.app.getWavePlusValues(macAddress, pollTimeout)
+		Homey.app.getWaveValues(macAddress, pollTimeout)
 			.then(result => {
 				this.log(result)
 
-				this.setCapabilityValue("measure_co2", result.co2);
-				this.setCapabilityValue("measure_pressure", result.pressure);
 				this.setCapabilityValue("measure_humidity", result.humidity);
 				this.setCapabilityValue("measure_temperature", result.temperature);
-				this.setCapabilityValue("measure_voc", result.voc);
 				this.setCapabilityValue("measure_radon", result.shortTermRadon);
 
-				this.log("Airthings Wave Plus sensor values updated");
+				this.log("Airthings Wave sensor values updated");
 
 				return Promise.resolve();
 
@@ -51,4 +48,4 @@ class WavePlusDevice extends Homey.Device {
 	
 }
 
-module.exports = WavePlusDevice;
+module.exports = WaveDevice;
