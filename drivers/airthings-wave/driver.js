@@ -2,17 +2,17 @@
 
 const Homey = require('homey');
 
-class WavePlusDriver extends Homey.Driver {
+class WaveDriver extends Homey.Driver {
 	
 	onInit() {
-		this.log('WavePlusDriver has been inited');
+		this.log('WaveDriver has been inited');
 	}
 
 	// This method is called when a user is adding a device
   	// and the 'list_devices' view is called
 	onPairListDevices(data, callback) {
 
-		Homey.app.discoverWavePlusDevices(this)
+		Homey.app.discoverWaveDevices(this)
 			.then(devices => {
 				this.log(devices)
 				callback(null, devices);
@@ -25,4 +25,4 @@ class WavePlusDriver extends Homey.Driver {
 	
 }
 
-module.exports = WavePlusDriver;
+module.exports = WaveDriver;
