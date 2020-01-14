@@ -36,6 +36,18 @@
     "name": "CRUDE AS / Vegard Brenden",
     "email": "anaxyd@gmail.com"
   },
+  "contributors": {
+    "developers": [
+      {
+        "name": "CRUDE AS / Vegard Brenden",
+        "email": "vegard@crude.no"
+      },
+      {
+        "name": "Airthings AS / Ole Andreas Torvmark",
+        "email": "ole.torvmark@airthings.com"
+      }
+    ]
+  },
   "contributing": {
     "donate": {
       "paypal": {
