@@ -157,6 +157,54 @@ class AirthingsApp extends Homey.App {
 			
 		})
 	}
+	getWaveMiniValues(macAddress, pollTimeout) {
+		return new Promise(async(resolve, reject) => {
+
+			this.log(macAddress)
+			this.log(pollTimeout)
+
+			let timeout = pollTimeout;
+
+			const ble = Homey.ManagerBLE;
+
+			try {
+				await this.sleep(5000);
+				const advertisement = await ble.find(macAddress, timeout);
+				const peripheral = await advertisement.connect();
+				this.log('Connected To Mini !',macAddress);
+				const services = await peripheral.discoverAllServicesAndCharacteristics();
+				this.log('Services Discovered Mini !',macAddress);
+				const dataService = await services.find(service => service.uuid === "b42e3882ade711e489d3123b93f75cba");
+				const characteristics = await dataService.discoverCharacteristics();
+				const data = await characteristics.find(characteristic => characteristic.uuid === "b42e3b98ade711e489d3123b93f75cba");
+				const sensorData = await data.read();
+				await peripheral.disconnect();
+				this.log('Disconnected from Mini, parsing data');
+				// This is the matching format for the binary data for unpacking.
+				const format = "<HHHHHHxxxx";
+				const unpacked = bufferpack.unpack(format, sensorData);
+
+				// Sensordata unpacked looks like this:
+				// (humidity, light, sh_rad, lo_rad, temp, pressure, co2, voc)
+				// Example:
+				// [ 81, 0, 10, 0, 2387, 48689, 366, 116 ]
+				// Some of the values requires minor math to get correct values
+
+				let sensorValues = {
+					humidity: unpacked[3] / 100,
+					light: unpacked[0],
+					temperature: (unpacked[1] / 100) - 273.15, //In Kelvin on Mini
+					pressure: unpacked[2] / 50,
+					voc: unpacked[4]
+				}
+				resolve(sensorValues)
+
+			} catch (error) {
+				reject(error)
+			}
+			
+		})
+	}
 	sleep(ms){
 		return new Promise(resolve=>{
 			setTimeout(resolve,ms)
@@ -226,7 +274,38 @@ class AirthingsApp extends Homey.App {
 
 		});
 	}
-	
+	discoverWaveMiniDevices(driver) {
+		return new Promise(async(resolve, reject) => {
+
+			this.log("Searching for Airthings Wave Mini devices...")
+			const timeout = 29000;
+
+			const ble = Homey.ManagerBLE;
+
+			try {
+				let devices = [];
+				// Wave + : b42e3882ade711e489d3123b93f75cba
+				const foundDevices = await ble.discover(['b42e3882ade711e489d3123b93f75cba'], timeout);
+
+				foundDevices.forEach(device => {
+					const format = "<xxIxx";
+					devices.push({
+						name: "Airthings Wave Mini (" + bufferpack.unpack(format, device.manufacturerData)[0] + ")",
+						data: {
+							id: device.id,
+							uuid: device.uuid,
+							address: device.address
+						}
+					})
+				});
+
+				resolve(devices)
+			} catch (error) {
+				reject(error)
+			}
+
+		});
+	}
 }
 
 module.exports = AirthingsApp;
