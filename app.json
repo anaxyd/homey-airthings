@@ -230,6 +230,72 @@
         "large": "/drivers/airthings-wave/assets/images/large.png",
         "small": "/drivers/airthings-wave/assets/images/small.png"
       }
+    },
+    {
+      "id": "airthings-mini",
+      "name": {
+        "en": "Airthings Mini"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "measure_voc",
+        "measure_humidity",
+        "measure_pressure",
+        "measure_temperature"
+      ],
+      "pair": [
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_my_devices"
+          }
+        },
+        {
+          "id": "add_my_devices",
+          "template": "add_devices"
+        }
+      ],
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "General settings"
+          },
+          "children": [
+            {
+              "id": "pollInterval",
+              "type": "number",
+              "label": {
+                "en": "Poll interval in minutes (default is 30)"
+              },
+              "value": 30,
+              "min": 1,
+              "max": 999,
+              "hint": {
+                "en": "Define how often Homey should poll your Airthings Mini. More often will reduce battery life."
+              }
+            },
+            {
+              "id": "pollTimeout",
+              "type": "number",
+              "label": {
+                "en": "Poll timeout in seconds (default is 20)"
+              },
+              "value": 20,
+              "min": 10,
+              "max": 30,
+              "hint": {
+                "en": "Define how many seconds Homey should try to connect to your Airthings Mini before timeout. Useful when your device is far away from Homey."
+              }
+            }
+          ]
+        }
+      ],
+      "images": {
+        "large": "/drivers/airthings-mini/assets/images/large.png",
+        "small": "/drivers/airthings-mini/assets/images/small.png"
+      }
     }
   ]
 }
