@@ -1,5 +1,8 @@
 {
   "1.1.0": {
     "en": "Support for Airthings Wave device"
+  },
+  "1.2.0": {
+    "en": "Support for Airthings Wave Mini device"
   }
 }

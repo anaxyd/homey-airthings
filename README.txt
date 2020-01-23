@@ -13,6 +13,9 @@ Airthings and Homey will communicate over Bluetooth, which is limited in range. 
 
 ### Changelog
 
+v 1.2.0
+- Added First Alpha version of Wave Mini implementation
+
 v 1.1.0
 - Fixed humidity on Wave+ (Showing negative values, when passing 63.5%rH)
 - Added serial number in title on discovery of Wave+
