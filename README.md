@@ -1,17 +1,14 @@
-# Airthings
+Airthings
 This app adds support for Airthings radon/voc sensors over Bluetooth Low Energy.
 
-### Device support
-In this release it will support Airthings Wave and Airthings Wave+ sensor. In future releases it will also support Airthings Mini.
+Device support
+Supports Airthings Wave, Airthings Wave+ and Airthings Mini.
 
-### Nice to know
-Airthings and Homey will communicate over Bluetooth, which is limited in range. Make sure that Homey and the device will be max 10 meters in distance to eachother, and if possible no obstacles in between (like fireplaces, brick wall, metal walls etc). When adding the device for the first time it is recommended to move Homey and the device close to eachother to make adding process easier.
+Nice to know
+Airthings and Homey will communicate over Bluetooth, which is limited in range. Make sure that Homey and the device will be max 10 meters in distance to eachother, and if possible no obstacles in between (like fireplaces, brick wall, metal walls etc). 
 
-### Changelog
-##### v 1.1.0
-- Fixed humidity on Wave+ (Showing negative values, when passing 63.5%rH)
-- Added serial number in title on discovery of Wave+
-- Added First Alpha version of Wave implementation
+Pairing for the first time
+When pairing the device for the first time it is recommended to move Homey and the device close to eachother to make adding process easier.
 
-##### v 1.0.0
-Initial release of app
+Development
+The development of this app is done by Airthings (https://www.airthings.com/) and CRUDE (https://crude.no/)
