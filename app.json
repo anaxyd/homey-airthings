@@ -70,7 +70,7 @@
         "en": "bq"
       },
       "min": 0,
-      "max": 2000,
+      "max": 10000,
       "step": 1
     },
     "measure_voc": {
@@ -87,7 +87,7 @@
         "en": "ppb"
       },
       "min": 0,
-      "max": 2000,
+      "max": 4000,
       "step": 1
     }
   },
@@ -110,7 +110,8 @@
         "measure_humidity",
         "measure_pressure",
         "measure_temperature",
-        "measure_co2"
+        "measure_co2",
+        "measure_luminance"
       ],
       "pair": [
         {
@@ -136,9 +137,9 @@
               "id": "pollInterval",
               "type": "number",
               "label": {
-                "en": "Poll interval in minutes (default is 30)"
+                "en": "Poll interval in minutes (default is 10)"
               },
-              "value": 30,
+              "value": 10,
               "min": 1,
               "max": 999,
               "hint": {
@@ -175,7 +176,8 @@
       "capabilities": [
         "measure_radon",
         "measure_humidity",
-        "measure_temperature"
+        "measure_temperature",
+        "measure_luminance"
       ],
       "pair": [
         {
@@ -201,9 +203,9 @@
               "id": "pollInterval",
               "type": "number",
               "label": {
-                "en": "Poll interval in minutes (default is 30)"
+                "en": "Poll interval in minutes (default is 10)"
               },
-              "value": 30,
+              "value": 10,
               "min": 1,
               "max": 999,
               "hint": {
@@ -241,7 +243,8 @@
         "measure_voc",
         "measure_humidity",
         "measure_pressure",
-        "measure_temperature"
+        "measure_temperature",
+        "measure_luminance"
       ],
       "pair": [
         {
@@ -267,9 +270,9 @@
               "id": "pollInterval",
               "type": "number",
               "label": {
-                "en": "Poll interval in minutes (default is 30)"
+                "en": "Poll interval in minutes (default is 10)"
               },
-              "value": 30,
+              "value": 10,
               "min": 1,
               "max": 999,
               "hint": {
