@@ -4,5 +4,8 @@
   },
   "1.2.0": {
     "en": "Support for Airthings Wave Mini device"
+  },
+  "1.2.1": {
+    "en": "Fixed readme"
   }
 }
