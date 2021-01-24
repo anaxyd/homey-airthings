@@ -30,7 +30,7 @@ class AirthingsApp extends Homey.App {
 			this.log(macAddress)
 			this.log(pollTimeout)
 
-			let timeout = pollTimeout;
+			let timeout = pollTimeout * 1000;
 
 			const ble = Homey.ManagerBLE;
 
@@ -111,7 +111,7 @@ class AirthingsApp extends Homey.App {
 			this.log(macAddress)
 			this.log(pollTimeout)
 
-			let timeout = pollTimeout;
+			let timeout = pollTimeout*1000;
 
 			const ble = Homey.ManagerBLE;
 
@@ -162,12 +162,11 @@ class AirthingsApp extends Homey.App {
 			this.log(macAddress)
 			this.log(pollTimeout)
 
-			let timeout = pollTimeout;
+			let timeout = pollTimeout*1000;
 
 			const ble = Homey.ManagerBLE;
 
 			try {
-				await this.sleep(5000);
 				const advertisement = await ble.find(macAddress, timeout);
 				const peripheral = await advertisement.connect();
 				this.log('Connected To Mini !',macAddress);
