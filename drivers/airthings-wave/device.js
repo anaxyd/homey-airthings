@@ -7,6 +7,11 @@ class WaveDevice extends Homey.Device {
 	onInit() {
 		this.log('WaveDevice has been inited');
 
+		
+		// needed if the device was created with app version <=1.2.1
+		this.addCapability("measure_radon_longterm");
+		this.addCapability("measure_luminance");
+
 		const settings = this.getSettings();
 		const pollInterval = settings.pollInterval;
 		this.log(pollInterval);
@@ -34,6 +39,8 @@ class WaveDevice extends Homey.Device {
 				this.setCapabilityValue("measure_humidity", result.humidity);
 				this.setCapabilityValue("measure_temperature", result.temperature);
 				this.setCapabilityValue("measure_radon", result.shortTermRadon);
+				this.setCapabilityValue("measure_radon", result.longTermRadon);
+				this.setCapabilityValue("measure_luminance", result.light);
 
 				this.log("Airthings Wave sensor values updated");
 
