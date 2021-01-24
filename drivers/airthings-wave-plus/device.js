@@ -46,10 +46,13 @@ class WavePlusDevice extends Homey.Device {
 
 				this.log("Airthings Wave Plus sensor values updated");
 
+				this.setAvailable();
+
 				return Promise.resolve();
 
 			})
 			.catch(error => {
+				this.setUnavailable('Cannot get value:' + error);
 				new Error('Cannot get value:' + error);
 			});
 	}

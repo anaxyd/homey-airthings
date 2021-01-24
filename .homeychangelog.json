@@ -9,6 +9,6 @@
     "en": "Fixed readme"
   },
   "1.3.0": {
-    "en": "Extended Wave Plus driver to display more sensor readings"
+    "en": "Show the long term radon readings, show the luminance readings, mark device as unavailable if the connection is interrupted"
   }
 }

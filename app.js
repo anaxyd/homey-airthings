@@ -116,12 +116,10 @@ class AirthingsApp extends Homey.App {
 			const ble = Homey.ManagerBLE;
 
 			try {
-				await this.sleep(10000);
 				const advertisement = await ble.find(macAddress, timeout);
 				const peripheral = await advertisement.connect();
 				this.log('Connected !',macAddress);
 				const services = await peripheral.discoverAllServicesAndCharacteristics();
-				this.log('services', services);
 				this.log('Services Discovered !',macAddress);
 				const dataService = await services.find(service => service.uuid === "b42e1c08ade711e489d3123b93f75cba");
 				const characteristics = await dataService.discoverCharacteristics();
@@ -138,8 +136,6 @@ class AirthingsApp extends Homey.App {
 				// Example:
 				// [ 81, 0, 10, 0, 2387, 48689, 366, 116 ]
 				// Some of the values requires minor math to get correct values
-
-				this.log('unpacked', unpacked);
 
 				let sensorValues = {
 					humidity: unpacked[0] / 2,
