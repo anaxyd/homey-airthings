@@ -3,17 +3,20 @@
 const Homey = require('homey');
 
 class WaveMiniDevice extends Homey.Device {
-	
+
 	onInit() {
 		this.log('WaveMiniDevice has been inited');
+
+		// needed if the device was created with app version <=1.2.1
+		this.addCapability("measure_luminance");
 
 		const settings = this.getSettings();
 		const pollInterval = settings.pollInterval;
 		this.log(pollInterval);
 		const POLL_INTERVAL = 1000 * 60 * pollInterval; // default 30 minutes
 
-        // Run poll at init
-        this.poll();
+		// Run poll at init
+		this.poll();
 
 		setInterval(this.poll.bind(this), POLL_INTERVAL);
 
@@ -36,6 +39,7 @@ class WaveMiniDevice extends Homey.Device {
 				this.setCapabilityValue("measure_humidity", result.humidity);
 				this.setCapabilityValue("measure_temperature", result.temperature);
 				this.setCapabilityValue("measure_voc", result.voc);
+				this.setCapabilityValue("measure_luminance", result.light);
 
 				this.log("Airthings Wave Mini sensor values updated");
 
@@ -47,7 +51,7 @@ class WaveMiniDevice extends Homey.Device {
 			});
 	}
 
-	
+
 }
 
 module.exports = WaveMiniDevice;
