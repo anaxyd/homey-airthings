@@ -42,10 +42,12 @@ class WaveDevice extends Homey.Device {
 				this.setCapabilityValue("measure_radon", result.longTermRadon);
 				this.setCapabilityValue("measure_luminance", result.light);
 
+				this.setSettings({ rssi: result.rssi + ' db' });
+
 				this.log("Airthings Wave sensor values updated");
 
 				this.setAvailable();
-				
+
 				return Promise.resolve();
 
 			})

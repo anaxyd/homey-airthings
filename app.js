@@ -41,6 +41,7 @@ class AirthingsApp extends Homey.App {
 				await this.sleep(1000);
 				
 				const peripheral = await advertisement.connect();
+				const rssi = peripheral.rssi;
 				await this.sleep(1000);
 				this.log('Connected !',macAddress);
 				const services = await peripheral.discoverAllServicesAndCharacteristics();
@@ -95,6 +96,7 @@ class AirthingsApp extends Homey.App {
 					shortTermRadon: sensorSTA,
 					longTermRadon: sensorLTA,
 					temperature: sensorTemperature / 100,
+					rssi: rssi
 				}
 				
 				resolve(sensorValues)
@@ -118,6 +120,7 @@ class AirthingsApp extends Homey.App {
 			try {
 				const advertisement = await ble.find(macAddress, timeout);
 				const peripheral = await advertisement.connect();
+				const rssi = peripheral.rssi;
 				this.log('Connected !',macAddress);
 				const services = await peripheral.discoverAllServicesAndCharacteristics();
 				this.log('Services Discovered !',macAddress);
@@ -145,7 +148,8 @@ class AirthingsApp extends Homey.App {
 					temperature: unpacked[4] / 100,
 					pressure: unpacked[5] / 50,
 					co2: unpacked[6],
-					voc: unpacked[7]
+					voc: unpacked[7],
+					rssi: rssi
 				}
 
 				resolve(sensorValues)
@@ -169,6 +173,7 @@ class AirthingsApp extends Homey.App {
 			try {
 				const advertisement = await ble.find(macAddress, timeout);
 				const peripheral = await advertisement.connect();
+				const rssi = peripheral.rssi;
 				this.log('Connected To Mini !',macAddress);
 				const services = await peripheral.discoverAllServicesAndCharacteristics();
 				this.log('Services Discovered Mini !',macAddress);
@@ -193,7 +198,8 @@ class AirthingsApp extends Homey.App {
 					light: unpacked[0],
 					temperature: (unpacked[1] / 100) - 273.15, //In Kelvin on Mini
 					pressure: unpacked[2] / 50,
-					voc: unpacked[4]
+					voc: unpacked[4],
+					rssi: rssi
 				}
 				resolve(sensorValues)
 

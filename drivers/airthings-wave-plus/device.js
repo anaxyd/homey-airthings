@@ -44,6 +44,8 @@ class WavePlusDevice extends Homey.Device {
 				this.setCapabilityValue("measure_radon_longterm", result.longTermRadon);
 				this.setCapabilityValue("measure_luminance", result.light);
 
+				this.setSettings({ rssi: result.rssi + ' db' });
+
 				this.log("Airthings Wave Plus sensor values updated");
 
 				this.setAvailable();

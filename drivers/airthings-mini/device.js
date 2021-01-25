@@ -41,10 +41,12 @@ class WaveMiniDevice extends Homey.Device {
 				this.setCapabilityValue("measure_voc", result.voc);
 				this.setCapabilityValue("measure_luminance", result.light);
 
+				this.setSettings({ rssi: result.rssi + ' db' });
+
 				this.log("Airthings Wave Mini sensor values updated");
 
 				this.setAvailable();
-				
+
 				return Promise.resolve();
 
 			})

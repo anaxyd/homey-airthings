@@ -111,12 +111,6 @@
       "step": 1
     }
   },
-  "energy": {
-    "batteries": [
-      "AAA",
-      "AAA"
-    ]
-  },
   "drivers": [
     {
       "id": "airthings-wave-plus",
@@ -132,6 +126,12 @@
         "measure_temperature",
         "measure_co2"
       ],
+      "energy": {
+        "batteries": [
+          "AAA",
+          "AAA"
+        ]
+      },
       "pair": [
         {
           "id": "list_devices",
@@ -146,6 +146,26 @@
         }
       ],
       "settings": [
+        {
+          "id" : "info",
+          "type": "group",
+          "label": {
+              "en": "Info"
+          },
+          "children": [
+              {
+                  "id": "rssi",
+                  "type": "label",
+                  "label": {
+                      "en": "Signal strength"
+                  },           
+                   "hint": {
+                    "en": "lower is better"
+                  },
+                  "value": "Unknown"
+              }
+          ]
+        },
         {
           "type": "group",
           "label": {
@@ -197,6 +217,12 @@
         "measure_humidity",
         "measure_temperature"
       ],
+      "energy": {
+        "batteries": [
+          "AAA",
+          "AAA"
+        ]
+      },
       "pair": [
         {
           "id": "list_devices",
@@ -211,6 +237,26 @@
         }
       ],
       "settings": [
+        {
+          "id" : "info",
+          "type": "group",
+          "label": {
+              "en": "Info"
+          },
+          "children": [
+              {
+                  "id": "rssi",
+                  "type": "label",
+                  "label": {
+                      "en": "Signal strength"
+                  },           
+                   "hint": {
+                    "en": "lower is better"
+                  },
+                  "value": "Unknown"
+              }
+          ]
+        },
         {
           "type": "group",
           "label": {
@@ -263,6 +309,12 @@
         "measure_pressure",
         "measure_temperature"
       ],
+      "energy": {
+        "batteries": [
+          "AAA",
+          "AAA"
+        ]
+      },
       "pair": [
         {
           "id": "list_devices",
@@ -277,6 +329,26 @@
         }
       ],
       "settings": [
+        {
+          "id" : "info",
+          "type": "group",
+          "label": {
+              "en": "Info"
+          },
+          "children": [
+              {
+                  "id": "rssi",
+                  "type": "label",
+                  "label": {
+                      "en": "Signal strength"
+                  },           
+                   "hint": {
+                    "en": "lower is better"
+                  },
+                  "value": "Unknown"
+              }
+          ]
+        },
         {
           "type": "group",
           "label": {
