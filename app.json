@@ -69,6 +69,26 @@
       "uiComponent": "sensor",
       "getable": true,
       "setable": false,
+      "$flow": {
+        "triggers": [
+        {
+        "id": "measure_radon_changed",
+        "title": {
+          "en": "The radonvalues changed"
+        },
+        "tokens": [
+          {
+            "name": "measure_radon",
+            "title": {
+        "en": "Radon short term"
+            },
+            "type": "number",
+            "example": 130
+                  }
+              ]
+            }
+          ]
+      },
       "units": {
         "en": "bq"
       },
@@ -86,6 +106,26 @@
       "uiComponent": "sensor",
       "getable": true,
       "setable": false,
+      "$flow": {
+        "triggers": [
+        {
+        "id": "measure_radon_longterm_changed",
+        "title": {
+          "en": "The long term radon values changed"
+        },
+        "tokens": [
+          {
+            "name": "measure_radon_longterm",
+            "title": {
+        "en": "Radon longterm"
+            },
+            "type": "number",
+            "example": 230
+                  }
+              ]
+            }
+          ]
+      },      
       "units": {
         "en": "bq"
       },
@@ -103,6 +143,26 @@
       "uiComponent": "sensor",
       "getable": true,
       "setable": false,
+      "$flow": {
+        "triggers": [
+        {
+        "id": "measure_voc_changed",
+        "title": {
+          "en": "The VOC value changed"
+        },
+        "tokens": [
+          {
+            "name": "measure_voc",
+            "title": {
+        "en": "VOC"
+            },
+            "type": "number",
+            "example": 230
+                  }
+              ]
+            }
+          ]
+      },      
       "units": {
         "en": "ppb"
       },
